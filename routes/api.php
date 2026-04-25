@@ -20,9 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/test-order', [OrderController::class, 'store']);
-Route::get('/orders', [OrderController::class, 'index']);
-Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus']);
-Route::get('/uber-orders', [OrderController::class, 'fetchUberOrders']);
+Route::post('/orders', [OrderController::class, 'store']);        // create
+Route::get('/orders', [OrderController::class, 'index']);         // list
+Route::patch('/orders/{id}', [OrderController::class, 'updateStatus']); // update
+Route::get('/uber-orders', [OrderController::class, 'fetchUberOrders']); // optional
+
 
 Route::post('/uber/webhook', [UberWebhookController::class, 'handle']);
